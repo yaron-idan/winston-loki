@@ -195,10 +195,11 @@ class Batcher {
             reject(err)
           }
         }
-
+        console.log("about to post to loki")
         // Send the data to Grafana Loki
         req.post(this.url, this.contentType, this.options.headers, reqBody)
           .then(res => {
+            console.log(JSON.stringify(res,null,2))
             // No need to clear the batch if batching is disabled
             logEntry === undefined && this.clearBatch()
             resolve()
